@@ -2,6 +2,7 @@ import os
 import sys
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from src.components.model_trainer import ModelTrainer
 from src.components.transformer import Transformation
 from src.exception import CustomException
 from src.logger import logging as lg
@@ -45,3 +46,9 @@ if __name__=="__main__":
     data_transformation=Transformation()
     X_train, X_test, y_train, y_test,_=data_transformation.initiate_data_transformation(train_data,test_data)
     lg.info("completed the data transformaton method ")
+    
+    modeltrainer=ModelTrainer()
+    accuracy=modeltrainer.initiate_model_trainer(X_train,y_train,X_test,y_test)
+    lg.info("completed the model training  ")
+    lg.info(f"Accuracy = {accuracy}")
+    print("Accuracy = ",accuracy)
