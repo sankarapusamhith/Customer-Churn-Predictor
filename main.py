@@ -52,10 +52,8 @@ def main():
         st.title("Loan Approval Predictor")        
 
         if features:
-            print(features)
             predict_pipeline=PredictPipeline()
             result=predict_pipeline.predict(pd.DataFrame(features,index=[0]))
-            print(result[0])
             
             if result[0][0]>0.5:
               st.error("Loan couldn't be approved")
