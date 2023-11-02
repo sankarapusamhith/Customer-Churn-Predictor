@@ -20,9 +20,10 @@ def save_object(file_path, obj):
     
 def load_object(file_path):
     try:
-        with open(file_path, "rb") as file_obj:
-            file_obj.save(file_path.h5)
-            return load_model('./models/file_path.h5')
+        mdl = pickle.load(open(file_path, 'rb'))
+        file_=file_path.split("/")[1]
+        mdl.save(file_.h5)
+        return load_model('./models/file_.h5')
 
     except Exception as e:
         raise CustomException(e, sys)
