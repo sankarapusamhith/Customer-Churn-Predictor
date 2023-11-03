@@ -39,10 +39,8 @@ class ModelTrainer:
             
             accuracy = accuracy_score(y_test, y_pred)
             
-            save_object(
-                file_path=self.model_trainer_config.trained_model_file_path,
-                obj=classifier
-            )
+            classifier.save('artifacts/model.h5')
+            classifier.save_weights('artifacts/model_weights.h5')
             
             logging.info("Saved the model pickle file ")
 
