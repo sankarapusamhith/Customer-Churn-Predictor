@@ -22,8 +22,9 @@ def load_object(file_path):
     try:
         mdl = pickle.load(open(file_path, 'rb'))
         file_=file_path.split("/")[1]
-        mdl.save(file_.h5)
-        return load_model('./models/file_.h5')
+        h5_mdl=file_+'.h5'
+        mdl.save(h5_mdl)
+        return load_model('./models/h5_mdl')
 
     except Exception as e:
         raise CustomException(e, sys)
