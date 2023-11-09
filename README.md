@@ -1,2 +1,2 @@
-# Loan-Approval-Predictor
+# Customer-Churn-Predictor
  

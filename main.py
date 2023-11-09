@@ -7,7 +7,7 @@ from selenium import webdriver
 def add_sidebar():
   st.sidebar.header("Enter Person Info")
 
-  data = pd.read_csv("data/loan_approval.csv")
+  data = pd.read_csv("data/churn.csv")
   data=data.iloc[:,2:12]
   input_dict = {}
 
@@ -41,7 +41,7 @@ def add_sidebar():
 
 def main():
     st.set_page_config(
-    page_title="Loan Approval Predictor",
+    page_title="Customer Churn Predictor",
     layout="wide",
     initial_sidebar_state="expanded"
     )
@@ -49,7 +49,7 @@ def main():
     features=add_sidebar()
   
     with st.container():
-        st.title("Loan Approval Predictor")        
+        st.title("Customer Churn Predictor")        
 
         if features:
             print(features)
@@ -58,9 +58,9 @@ def main():
             print(result[0])
             
             if result[0][0]>0.5:
-              st.error("Loan couldn't be approved")
+              st.error("Customer may leave the bank")
             else :
-              st.success("Loan could be approved")
+              st.success("Customer could stay back")
                
         else:
            st.warning("To obtain the result,  fill out the form completely")
