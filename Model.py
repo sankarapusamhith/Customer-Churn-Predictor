@@ -17,7 +17,7 @@ def main():
         st.title("Customer Churn Predictor")        
         get_space(3)
 
-        col1,_=st.columns([1.25,1.75])
+        col1,_=st.columns([0.75,2.25])
 
         with col1:
             
@@ -27,11 +27,14 @@ def main():
 
             data= data.drop(['Exited'], axis=1)
             df=data.copy()
-            df.columns=['Credit_Score', 'Gender', 'Age', 'Tenure',
+            df.columns=['Credit_Score', 'Gender', 'Age', 'Tenure ( in years )',
                 'Balance', 'Num_Of_Products', 'Credit_Card', 'Is_Active_Member',
-                'Salary']
+                'Salary (Monthly)']
             col=dict(zip(data.columns, df.columns))
-            
+            max_val={'CreditScore':950, 'Age':95 , 'Tenure':50,
+                'Balance':1000000.00, 'NumOfProducts':4,
+                'EstimatedSalary':200000.00}
+
             with st.form("my_form",clear_on_submit=True):
                 for i in data.columns:
                     if data[i].dtype=='int64':
@@ -39,9 +42,9 @@ def main():
                             val=st.radio(col[i],['yes','no'],index=None)
                             input_dict[i]=1 if val == 'yes' else 0
                         else :
-                            input_dict[i]=st.number_input(col[i], value=None, step=1)
+                            input_dict[i]=st.slider(col[i], 0, max_val[i])
                     if data[i].dtype=='float64':
-                        input_dict[i]=st.number_input(col[i], value=None, step=10000.0)
+                        input_dict[i]=st.slider(col[i],  0.0, max_val[i])
                     if data[i].dtype=='object':
                         input_dict[i]=st.radio(col[i],list(data[i].value_counts().keys()),index=None)
                         
